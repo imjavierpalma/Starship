@@ -103,3 +103,60 @@ disabled = false
 format = "via [ $version]($style) "
 disabled = true
 
+[azure]
+disabled = false
+format = "on [$symbol($subscription)]($style) "
+symbol = "ﴃ "
+style = "blue bold"
+
+[conda]
+format = "[$symbol$environment](dimmed green) "
+
+[aws]
+format = 'on [$symbol($profile )(\($region\) )]($style)'
+style = "bold blue"
+symbol = "🅰 "
+[aws.region_aliases]
+ap-southeast-2 = "au"
+us-east-1 = "va"
+[aws.profile_aliases]
+CompanyGroupFrobozzOnCallAccess = 'Frobozz'
+
+[gcloud]
+symbol = "️🇬️ "
+[gcloud.region_aliases]
+us-central1 = "uc1"
+asia-northeast1 = "an1"
+
+[kubernetes]
+format = 'on [ﴱ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
+disabled = false
+[kubernetes.context_aliases]
+"dev.local.cluster.k8s" = "dev"
+".*/openshift-cluster/.*" = "openshift"
+"gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
+[kubernetes.user_aliases]
+"dev.local.cluster.k8s" = "dev"
+"root/.*" = "root"
+
+[localip]
+ssh_only = false
+format = "@[$localipv4](bold red) "
+disabled = false
+
+[package]
+format = "via [📦 $version](208 bold) "
+
+[shell]
+fish_indicator = ""
+powershell_indicator = "_"
+unknown_indicator = "mystery shell"
+style = "cyan bold"
+disabled = false
+
+[sudo]
+style = "bold green"
+symbol = "🛡 "
+disabled = false
+
+
