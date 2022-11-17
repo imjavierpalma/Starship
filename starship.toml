@@ -1,51 +1,34 @@
+# ~/.starship/starship.toml
+
 # Inserts a blank line between shell prompts
 add_newline = true
 
-# Change command timeout from 500 to 1000 ms
-command_timeout = 1000
-
 # Change the default prompt format
-# ---
-# old config ...
-# format = """\
-# [╭╴](238)$env_var\
-# $all[╰─](238)$character"""
-
-# new config
-format = """$env_var $all"""
+format = """\
+[╭╴](238)$env_var\
+$all[╰─](238)$character"""
 
 # Change the default prompt characters
-
 [character]
-# old config
-# success_symbol = "[](238)"
-# error_symbol = "[](238)"
-success_symbol = ""
-error_symbol = ""
+success_symbol = "[](238)"
+error_symbol = "[](238)"
 
 # Shows an icon that should be included by zshrc script based on the distribution or os
-
 [env_var.STARSHIP_DISTRO]
-format = '[$env_value](white)'
+format = '[$env_value](bold white)'  # removed space between distro and rest for pwsh
 variable = "STARSHIP_DISTRO"
 disabled = false
 
 # Shows the username
-
 [username]
-style_user = "white"
-style_root = "white"
+style_user = "white bold"
+style_root = "black bold"
 format = "[$user]($style) "
-disabled = false
-show_always = true
-
-[hostname]
-ssh_only = false
-format = "on [$hostname](bold yellow) "
-disabled = false
+disabled = true  # disable in powershell
+show_always = false
 
 [directory]
-truncation_length = 1
+truncation_length = 3
 truncation_symbol = "…/"
 home_symbol = " ~"
 read_only_style = "197"
@@ -54,8 +37,8 @@ format = "at [$path]($style)[$read_only]($read_only_style) "
 
 [git_branch]
 symbol = " "
-format = "via [$symbol$branch]($style) "
-# truncation_length = 4
+format = "on [$symbol$branch]($style) "
+truncation_length = 4
 truncation_symbol = "…/"
 style = "bold green"
 
@@ -73,90 +56,3 @@ modified = " "
 staged = '[++\($count\)](green)'
 renamed = "襁 "
 deleted = " "
-
-[terraform]
-format = "via [ terraform $version]($style) 壟 [$workspace]($style) "
-disabled = false
-
-[vagrant]
-format = "via [ vagrant $version]($style) "
-disabled = true
-
-[docker_context]
-format = "via [ $context](bold blue) "
-disabled = false
-
-[helm]
-format = "via [ $version](bold purple) "
-disabled = false
-
-[python]
-symbol = " "
-python_binary = "python3"
-disabled = false
-
-[nodejs]
-format = "via [ $version](bold green) "
-disabled = false
-
-[ruby]
-format = "via [ $version]($style) "
-disabled = true
-
-[azure]
-disabled = false
-format = "on [$symbol($subscription)]($style) "
-symbol = "ﴃ "
-style = "blue bold"
-
-[conda]
-format = "[$symbol$environment](dimmed green) "
-
-[aws]
-format = 'on [$symbol($profile )(\($region\) )]($style)'
-style = "bold blue"
-symbol = "🅰 "
-[aws.region_aliases]
-ap-southeast-2 = "au"
-us-east-1 = "va"
-[aws.profile_aliases]
-CompanyGroupFrobozzOnCallAccess = 'Frobozz'
-
-[gcloud]
-symbol = "️🇬️ "
-[gcloud.region_aliases]
-us-central1 = "uc1"
-asia-northeast1 = "an1"
-
-[kubernetes]
-format = 'on [ﴱ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
-disabled = false
-[kubernetes.context_aliases]
-"dev.local.cluster.k8s" = "dev"
-".*/openshift-cluster/.*" = "openshift"
-"gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
-[kubernetes.user_aliases]
-"dev.local.cluster.k8s" = "dev"
-"root/.*" = "root"
-
-[localip]
-ssh_only = false
-format = "@[$localipv4](bold red) "
-disabled = false
-
-[package]
-format = "via [📦 $version](208 bold) "
-
-[shell]
-fish_indicator = ""
-powershell_indicator = "_"
-unknown_indicator = "mystery shell"
-style = "cyan bold"
-disabled = false
-
-[sudo]
-style = "bold green"
-symbol = "🛡 "
-disabled = false
-
-
